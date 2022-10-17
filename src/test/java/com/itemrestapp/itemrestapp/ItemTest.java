@@ -193,7 +193,15 @@ class ItemTest {
 		ResponseEntity<List>  result = restTemplate.exchange("http://localhost:8083/getallitems",
                 HttpMethod.GET,entity,List.class);
 		System.out.println(result.getBody());
-	     
+		
+		List<Item> temp = itemdao.findAll();
+		
+		//Assertions.assertEquals(temp,result.getBody());
+		
+		//assertTrue(temp.equals(result.getBody()));
+		
+		Assertions.assertEquals(temp.toString(),result.getBody().toString());
+		
 	    //Verify request succeed
 	    Assertions.assertEquals(200, result.getStatusCodeValue());
 	// Assertions.assertEquals("item added successfully", result.getBody());
