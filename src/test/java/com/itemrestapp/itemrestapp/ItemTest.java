@@ -9,7 +9,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -43,7 +40,6 @@ import io.swagger.annotations.Example;
 class ItemTest {
 	
 	@Autowired
-	static
 	ItemDao itemdao;	
 	
 	
@@ -182,40 +178,27 @@ class ItemTest {
 	    Assertions.assertEquals(202, result.getStatusCodeValue());
 	   Assertions.assertEquals("item added successfully", result.getBody());
 	}
-//	@Test
-//	//@ParameterizedTest
-//	//@MethodSource("provideStringsForIsBlank")
-//	public void getallitems() throws URISyntaxException 
-//	{
-//	    RestTemplate restTemplate = new RestTemplate();
-//	   
-//	    
-//		HttpHeaders headers=new HttpHeaders();
-//	     
-//		 headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//	     
-//		 HttpEntity<List<Item>> entity=new HttpEntity<List<Item>>(headers);
-//	 
-//		ResponseEntity<List>  result = restTemplate.exchange("http://localhost:8083/getallitems",
-//                HttpMethod.GET,entity,List.class);
-//		System.out.println(result.getBody());
-//	     
-//	    //Verify request succeed
-//	    Assertions.assertEquals(200, result.getStatusCodeValue());
-//	    List<Item> temp = itemdao.findAll();
-//	    int i =0; 
-//	    for(Item x: temp) {
-//	    
-//	    	Assertions.assertTrue(temp.toString().equals(result.getBody().get(i)));
-//	    }
-//	 
-//	 		
-//	}
-	
-	
-	
-	private static Stream<Item> provideStringsForIsBlank() {
-	    return itemdao.findAll().stream();
+	@Test
+	public void getallitems() throws URISyntaxException 
+	{
+	    RestTemplate restTemplate = new RestTemplate();
+	   
+	    
+		HttpHeaders headers=new HttpHeaders();
+	     
+		 headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+	     
+		 HttpEntity<List<Item>> entity=new HttpEntity<List<Item>>(headers);
+	 
+		ResponseEntity<List>  result = restTemplate.exchange("http://localhost:8083/getallitems",
+                HttpMethod.GET,entity,List.class);
+		System.out.println(result.getBody());
+	     
+	    //Verify request succeed
+	    Assertions.assertEquals(200, result.getStatusCodeValue());
+	// Assertions.assertEquals("item added successfully", result.getBody());
+	 
+	 		
 	}
 
 
