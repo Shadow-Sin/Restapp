@@ -182,34 +182,35 @@ class ItemTest {
 	    Assertions.assertEquals(202, result.getStatusCodeValue());
 	   Assertions.assertEquals("item added successfully", result.getBody());
 	}
-	
-	@ParameterizedTest
-	@MethodSource("provideStringsForIsBlank")
-	public void getallitems() throws URISyntaxException 
-	{
-	    RestTemplate restTemplate = new RestTemplate();
-	   
-	    
-		HttpHeaders headers=new HttpHeaders();
-	     
-		 headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-	     
-		 HttpEntity<List<Item>> entity=new HttpEntity<List<Item>>(headers);
-	 
-		ResponseEntity<List>  result = restTemplate.exchange("http://localhost:8083/getallitems",
-                HttpMethod.GET,entity,List.class);
-		System.out.println(result.getBody());
-	     
-	    //Verify request succeed
-	    Assertions.assertEquals(200, result.getStatusCodeValue());
-	
-	 
-	 			for(Object x: result.getBody()) {
-	 				
-	 				
-	 				
-	 			}
-	}
+//	@Test
+//	//@ParameterizedTest
+//	//@MethodSource("provideStringsForIsBlank")
+//	public void getallitems() throws URISyntaxException 
+//	{
+//	    RestTemplate restTemplate = new RestTemplate();
+//	   
+//	    
+//		HttpHeaders headers=new HttpHeaders();
+//	     
+//		 headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//	     
+//		 HttpEntity<List<Item>> entity=new HttpEntity<List<Item>>(headers);
+//	 
+//		ResponseEntity<List>  result = restTemplate.exchange("http://localhost:8083/getallitems",
+//                HttpMethod.GET,entity,List.class);
+//		System.out.println(result.getBody());
+//	     
+//	    //Verify request succeed
+//	    Assertions.assertEquals(200, result.getStatusCodeValue());
+//	    List<Item> temp = itemdao.findAll();
+//	    int i =0; 
+//	    for(Item x: temp) {
+//	    
+//	    	Assertions.assertTrue(temp.toString().equals(result.getBody().get(i)));
+//	    }
+//	 
+//	 		
+//	}
 	
 	
 	
